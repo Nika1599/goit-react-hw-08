@@ -1,0 +1,23 @@
+.contact {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.contactNumber {
+  margin-left: 10px;
+}
+.contactName svg,
+.contactNumber svg {
+  margin-right: 8px;
+}
+
+.deleteButton {
+  background-color: #808080;
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
