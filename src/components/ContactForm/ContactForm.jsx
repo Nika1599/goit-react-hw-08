@@ -35,20 +35,39 @@ const ContactForm = () => {
     dispatch(addContact(newContact));
     actions.resetForm();
   };
+
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
       validationSchema={FeedbackSchema}
     >
-      <Form>
-        <label htmlFor={nameFieldId}>Name</label>
-        <Field type="text" name="username" id={nameFieldId} />
+      <Form className={css.form}>
+        <label htmlFor={nameFieldId} className={css.label}>
+          Name
+        </label>
+        <Field
+          type="text"
+          name="username"
+          id={nameFieldId}
+          className={css.input}
+        />
         <ErrorMessage name="username" component="span" className={css.error} />
-        <label htmlFor={numberFieldId}>Number</label>
-        <Field type="tel" name="number" id={numberFieldId} />
-        <ErrorMessage name="number" component="span" />
-        <button type="submit">Add contact</button>
+
+        <label htmlFor={numberFieldId} className={css.label}>
+          Number
+        </label>
+        <Field
+          type="tel"
+          name="number"
+          id={numberFieldId}
+          className={css.input}
+        />
+        <ErrorMessage name="number" component="span" className={css.error} />
+
+        <button type="submit" className={css.button}>
+          Add contact
+        </button>
       </Form>
     </Formik>
   );
