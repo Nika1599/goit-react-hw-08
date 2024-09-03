@@ -2,12 +2,18 @@ import css from "./Contact.module.css";
 import { FaUser, FaPhoneAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contacts/operations";
+import toast from "react-hot-toast";
 
 const Contact = ({ data }) => {
   const dispatch = useDispatch();
 
-  const handleDelete = () => {
-    dispatch(deleteContact(data.id));
+  const handleDelete = async () => {
+    try {
+      await dispatch(deleteContact(data.id)).unwrap();
+      toast.success("Contact deleted successfully!");
+    } catch {
+      toast.error("Failed to delete contact.");
+    }
   };
 
   return (

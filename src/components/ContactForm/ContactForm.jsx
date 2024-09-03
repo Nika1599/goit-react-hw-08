@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { nanoid } from "nanoid";
+import toast from "react-hot-toast";
 import * as Yup from "yup";
 import css from "./ContactForm.module.css";
 
@@ -26,14 +27,18 @@ const ContactForm = () => {
   const nameFieldId = nanoid();
   const numberFieldId = nanoid();
 
-  const handleSubmit = (values, actions) => {
-    console.log(values);
+  const handleSubmit = async (values, actions) => {
     const newContact = {
       name: values.username,
       number: values.number,
     };
-    dispatch(addContact(newContact));
-    actions.resetForm();
+    try {
+      await dispatch(addContact(newContact)).unwrap();
+      toast.success("Contact added successfully!");
+      actions.resetForm();
+    } catch {
+      toast.error("Failed to add contact.");
+    }
   };
 
   return (
